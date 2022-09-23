@@ -21,7 +21,11 @@ Complejo operator-(Complejo a, Complejo b);
 Complejo operator*(Complejo a, Complejo b);
 Complejo operator==(Complejo a, Complejo b);
 
-int main() { return 0; }
+int main() {
+  int prueba = 0;
+
+  return 0;
+}
 
 ostream &operator<<(ostream &o, Complejo a) {
   o << "(" << a.getParteReal() << "+" << a.getParteImag() << ")";
