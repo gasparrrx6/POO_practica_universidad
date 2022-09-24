@@ -1,3 +1,11 @@
+/* Utilice las clases ​Alumno y ​Docente del ejercicio anterior para crear
+ * una clase Curso que modele el cursado de una materia. Cada curso tiene un
+ * nombre, un profesor a cargo y un número máximo de 50 alumnos. Implemente un
+ * metodo AgregarAlumno(...) que permita agregar un alumno al curso y otro
+ * metodo MejorPromedio(...) que devuelva el alumno con mejor promedio. Proponga
+ * los constructores y métodos extra que considere necesarios.
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -15,9 +23,7 @@ public:
   Persona(){};
   Persona(string apellido, string nombre, int dni, int fechaNac,
           string estadoCivil);
-
   int edad(int fechaActual);
-
   string getApellido() { return apellido; };
   string getNombre() { return nombre; };
   int getDni() { return dni; };
