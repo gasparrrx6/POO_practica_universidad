@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-  ifstream archi("Prueba.txt");
+  ifstream archi("Prueba.txt"); // abro archivo para leerlo
   int x;
 
   while (archi >> x) {
