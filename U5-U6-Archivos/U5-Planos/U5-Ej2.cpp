@@ -61,5 +61,15 @@ int main() {
 
   archi2.close();
 
+  ifstream archi3("U5-Ej2_promedios.txt", ios::app);
+  string renglon;
+
+  cout << endl;
+  while (getline(archi3, renglon)) {
+    cout << renglon << endl;
+  }
+
+  archi.close();
+
   return 0;
 }
