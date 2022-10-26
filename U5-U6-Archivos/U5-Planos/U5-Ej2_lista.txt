@@ -1,0 +1,6 @@
+Lopez Javier
+80 60
+Palacios Juan
+20 35
+Perez Pedro
+90 15
