@@ -1,0 +1,3 @@
+Lopez Javier 70 Regular
+Palacios Juan 27.5 Libre
+Perez Pedro 52.5 Regular
