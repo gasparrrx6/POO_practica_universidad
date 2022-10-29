@@ -41,7 +41,7 @@ void Complejo::setParteImag(float nro) { m_parteImag = nro; }
 
 Complejo operator+(Complejo c1, Complejo c2) {
   Complejo resultado;
-  resultado.setParteReal(c1.getParteReal() + c2.getParteReal());
+  resultado.setParteReal(c1.getParteReal() + c1.getParteReal());
   resultado.setParteImag(c2.getParteImag() + c2.getParteImag());
   return resultado;
 }
