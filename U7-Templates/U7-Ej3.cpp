@@ -31,7 +31,7 @@ public:
                                           // la funcion (int, char, string) y
                                           // algunaFuncAleatorio es el parametro
     tamano = n;
-    vector = new T[n];
+    vector = new T[tamano];
 
     // d
     for (int i = 0; i < n; i++) {
@@ -94,6 +94,5 @@ int main() {
     break;
   }
 
-  // fdf
   return 0;
 }
