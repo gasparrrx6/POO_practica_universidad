@@ -69,29 +69,32 @@ int main() {
   cin >> tamano;
 
   switch (tipo) {
-  case 1:
+  case 1: {
     VectorDinamico<int> vInt(tamano, aleatorioInt);
 
     for (int i = 0; i < tamano; i++) {
       cout << vInt[i] << endl;
     }
     break;
+  }
 
-  case 2:
+  case 2: {
     VectorDinamico<char> vChar(tamano, aleatorioChar);
 
     for (int i = 0; i < tamano; i++) {
       cout << vChar[i] << endl;
     }
     break;
+  }
 
-  case 3:
+  case 3: {
     VectorDinamico<string> vString(tamano, aleatorioString);
 
     for (int i = 0; i < tamano; i++) {
       cout << vString[i] << endl;
     }
     break;
+  }
   }
 
   return 0;
