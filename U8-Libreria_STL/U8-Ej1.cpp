@@ -20,13 +20,31 @@
 using namespace std;
 
 int main() {
-  vector<int> v(15);
+  vector<int> v(5);
   int nro;
 
   cout << "Ingrese 15 enteros\n";
   for (int &e : v) {
     cin >> nro;
     e = nro;
+  }
+
+  // a.1
+  cout << "\nMostrando con []\n";
+  for (int e = 0; e < v.size(); e++) {
+    cout << v[e] << " ";
+  }
+
+  // a.2
+  cout << "\nMostrando con iteradores\n";
+  for (auto e = v.begin(); e < v.end(); advance(e, 1)) {
+    cout << *e << " ";
+  }
+
+  // a.3
+  cout << "\nMostrando con rangos\n";
+  for (auto e = v.begin(); e < v.end(); e++) {
+    cout << *e << " ";
   }
 
   return 0;
