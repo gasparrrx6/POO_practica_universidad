@@ -15,6 +15,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 using namespace std;
@@ -45,6 +46,28 @@ int main() {
   cout << "\nMostrando con rangos\n";
   for (auto e = v.begin(); e < v.end(); e++) {
     cout << *e << " ";
+  }
+
+  // b.1
+  cout << "\nEl min es: " << *(min_element(v.begin(), v.end()))
+       << ", y el max es: " << *(max_element(v.begin(), v.end()));
+
+  // b.2
+  int suma = accumulate(v.begin(), v.end(), 0);
+  cout << "\nLa suma de todos los elementos es: " << suma;
+
+  // b.3
+  cout << "\nEl promedio es: " << float(suma / v.size());
+
+  // c
+  cout << "\nIngrese valor a buscar\n";
+  cin >> nro;
+  auto posNroBuscado =
+      find(v.begin(), v.end(), nro); // guarda la direc de mem de nro
+  if (*posNroBuscado == nro) {
+    cout << "El nro esta en la posicion: " << posNroBuscado - v.begin() + 1;
+  } else {
+    cout << "Ese nro no esta en la lista";
   }
 
   return 0;
