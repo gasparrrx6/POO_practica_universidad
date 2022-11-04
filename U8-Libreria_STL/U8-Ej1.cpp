@@ -25,9 +25,9 @@ int main() {
   int nro;
 
   cout << "Ingrese 15 enteros\n";
-  for (int &e : v) {
+  for (int e = 0; e < v.size(); e++) {
     cin >> nro;
-    e = nro;
+    v[e] = nro;
   }
 
   // a.1
@@ -44,8 +44,8 @@ int main() {
 
   // a.3
   cout << "\nMostrando con rangos\n";
-  for (auto e = v.begin(); e < v.end(); e++) {
-    cout << *e << " ";
+  for (int &e : v) {
+    cout << e << " ";
   }
 
   // b.1
@@ -59,16 +59,40 @@ int main() {
   // b.3
   cout << "\nEl promedio es: " << float(suma / v.size());
 
+  auto itStart = v.begin();
+  auto itFin = v.end();
+  sort(itStart, itFin);
+  cout << "\nLa mediana es: " << v[v.size() / 2];
+
   // c
-  cout << "\nIngrese valor a buscar\n";
-  cin >> nro;
-  auto posNroBuscado =
-      find(v.begin(), v.end(), nro); // guarda la direc de mem de nro
-  if (*posNroBuscado == nro) {
-    cout << "El nro esta en la posicion: " << posNroBuscado - v.begin() + 1;
-  } else {
-    cout << "Ese nro no esta en la lista";
+  // mostrar ordenado
+  cout << "\nMostrando con rangos\n";
+  for (int &e : v) {
+    cout << e << " ";
   }
+
+  do {
+    cout << "\nIngrese valor a buscar\n";
+    cin >> nro;
+    auto posNroBuscado =
+        find(v.begin(), v.end(), nro); // guarda la direc de mem de nro
+    if (posNroBuscado != v.end()) {
+      cout << "El nro esta en la posicion: " << posNroBuscado - v.begin() + 1;
+    } else {
+      cout << "Ese nro no esta en la lista";
+    }
+  } while (nro != 999);
 
   return 0;
 }
+
+/*
+ * vector:
+ * 54  23  78  89  65  end
+ * 110 111 112 113 114 115
+ *
+ * posNroBuscado = 113
+ *
+ * posNroBuscado - v.end() = posicion real para la pc (desde 0) + 1
+ * 113 - 110 = 3 + 1
+ */
