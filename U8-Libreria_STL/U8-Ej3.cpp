@@ -9,8 +9,10 @@
  * U8-Ej3.txt”​.
  */
 
+#include <fstream>
 #include <iostream>
 #include <list>
+
 using namespace std;
 
 int main() {
@@ -36,10 +38,15 @@ int main() {
     }
   }
 
+  ofstream archi("U8-Ej3.txt");
+
   cout << "\nLista modificada\n";
   for (float x : lista) {
     cout << x << " ";
+    archi << x << endl;
   }
+
+  archi.close();
 
   return 0;
 }
