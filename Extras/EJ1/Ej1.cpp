@@ -1,3 +1,15 @@
+/* Ej1
+ * Un archivo “discurso.txt” contiene la  transcripción de un discurso
+ * de  un  político  importante.  El  político  en  cuestión  tiene  la  mala
+ * costumbre  de  usar palabrotas  en  su  discurso.  Sus  asesores  han
+ * decidido modificar  la  transcripción  para no  molestar  a  los  votantes
+ * más susceptibles.  Para  ello  han  generado  un  archivo “palabrotas.txt”,
+ * con  la lista  de  las  que  usa  con más  frecuencia.  Escriba  un programa
+ * c++  que modifique  el  archivo  del  discurso  reemplazando  todas  las
+ * palabrotas  por “***beep***”.  No  hay palabras cortadas  en  el  texto  y
+ * puede haber  2  o mas  palabrotas en una línea.
+ */
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
