@@ -12,16 +12,5 @@ int main() {
   }
 
   archi.close();
-
-  ifstream archi2("datos.bin", ios::binary | ios::in);
-
-  int a;
-  for (int i = 0; i < 10; i++) {
-    archi2.read(reinterpret_cast<char *>(&a), sizeof(a));
-    cout << a << endl;
-  }
-
-  archi2.close();
-
   return 0;
 }

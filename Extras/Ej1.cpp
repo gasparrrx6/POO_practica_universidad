@@ -10,12 +10,35 @@
 #include <fstream>
 #include <iostream>
 
-
 using namespace std;
 
-template <typename A, typename B>
-void buscarReemplazar(string nombre, A datoA, B datoB) {
-  fstream archi(nombre, ios::binary | ios::in | ios::out);
+template <typename tipoDato>
+void buscarReemplazar(string nombre, tipoDato datoA, tipoDato datoB) {
+  fstream archi(nombre, ios::binary | ios::in | ios::out | ios::ate);
+
+  tipoDato dato;
+  int tamanoArchi = archi.tellg();
+  int n = tamanoArchi / sizeof(dato); // tamaño en bytes de cada dato
+
+  for (int i = 0; i < n; i++) {
+    archi.seekg(i * sizeof(dato));
+    archi.read(reinterpret_cast<char *>(&dato), sizeof(dato));
+    if (dato == datoA) {
+      archi.seekp(i * sizeof(dato));
+      archi.write(reinterpret_cast<char *>(&datoB), sizeof(datoB));
+    }
+  }
 }
 
-int main() { return 0; }
+int main() {
+
+  int a, b;
+  cout << "Ingrese dato a buscar\n";
+  cin >> a;
+  cout << "Ingrese dato a insertar\n";
+  cin >> b;
+
+  buscarReemplazar("datos.bin", a, b);
+
+  return 0;
+}

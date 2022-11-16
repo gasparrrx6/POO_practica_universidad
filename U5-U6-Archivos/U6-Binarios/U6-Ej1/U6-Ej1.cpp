@@ -1,3 +1,10 @@
+/* Ejercicio 1
+ *
+ * Escriba a través de un programa C++ un archivo binario llamado U6-Ej1.dat,
+ * formado por un conjunto de 200 pares de números generados aleatoriamente.
+ * Cada par de datos se conforma por un entero y un flotante.
+ */
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -25,10 +32,12 @@ int main() {
     archi.write(reinterpret_cast<char *>(&par), sizeof(par));
   }
 
+  archi.close();
+
   ifstream archi2("U6-Ej1.dat", ios::binary | ios::ate);
 
   cout << "tamano del archivo " << archi2.tellg(); // tamaño es bytes
 
-  archi.close();
+  archi2.close();
   return 0;
 }
