@@ -17,56 +17,48 @@
 
 using namespace std;
 
+void reemplazar(string &discurso, string palabrota);
+
 int main() {
-  // Guardar discurso en vector y mostrarlo
+  // Guardar discurso en un string y mostrarlo
   ifstream archiDiscurso("discurso.txt");
-  vector<string> discurso;
-  string oracion;
+  string discurso, oracion;
 
   while (getline(archiDiscurso, oracion)) {
-    discurso.push_back(oracion);
+    discurso += oracion + "\n";
   }
 
   archiDiscurso.close();
 
-  for (int i = 0; i < discurso.size(); i++) {
-    cout << discurso[i] << endl;
-  }
+  cout << discurso << endl;
 
-  // Guardar palabrotas en vector
+  // Obtener palabrotas y ya reemplazar
   ifstream archiPalabrotas("palabrotas.txt");
-  vector<string> palabrotas;
   string palabrota;
 
   while (getline(archiPalabrotas, palabrota)) {
-    palabrotas.push_back(palabrota);
+    reemplazar(discurso, palabrota);
   }
 
   archiPalabrotas.close();
 
-  // Reemplazar palabrotas por beep
-  string beep = "***beep***";
-
-  for (int i = 0; i < discurso.size(); i++) {
-    for (int j = 0; j < palabrotas.size(); j++) {
-      int posBusqueda = discurso[i].find(palabrotas[i]);
-      if (posBusqueda != -1) {
-        // discurso[i].insert(posBusqueda, beep);
-        discurso[i].replace(posBusqueda, 4, beep);
-      }
-    }
-  }
-
   // Guardar discurso censurado en otro archivo y mostrarlo
   ofstream archiCensurado("discursoCensurado.txt");
 
-  cout << endl;
-  for (int i = 0; i < palabrotas.size(); i++) {
-    archiCensurado << discurso[i] << endl;
-    cout << discurso[i] << endl;
-  }
+  archiCensurado << discurso;
+  cout << discurso << endl;
 
   archiCensurado.close();
 
   return 0;
+}
+
+void reemplazar(string &discurso, string palabrota) {
+  string beep = "***beep***";
+  int posicion = discurso.find(palabrota); // busca la posicion de la palabrota
+  while (posicion != string::npos) {       // si hay
+    discurso.replace(posicion, palabrota.size(), beep); // la remplaza
+    posicion = discurso.find(
+        palabrota, posicion + beep.size()); // sigue buscando mas palabrotas
+  }
 }
