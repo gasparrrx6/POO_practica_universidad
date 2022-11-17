@@ -28,14 +28,16 @@ int main() {
   archiPass.close();
 
   // Cargar datos
-  ofstream archiDatos("datos.txt");
+  ofstream archiDatos("datos.txt", ios::trunc);
 
   for (int i = 0; i < 100; i++) {
     archiDatos << rand() % 9000 + 1000 << " " << listaNombres[rand() % 20]
-               << " " << listaPass[rand() % 10] << endl;
+               << " " << listaPass[rand() % 20] << endl;
   }
 
   archiDatos.close();
+
+  cout << "Archivo generado!";
 
   return 0;
 }
