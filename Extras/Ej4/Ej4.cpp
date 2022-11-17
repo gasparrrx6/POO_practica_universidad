@@ -3,13 +3,12 @@
  * cada  usuario  se  guarda  código  (entero),  nombre  (cadena)  y  contraseña
  * (cadena).  Se quiere encontrar contraseñas comunes para sugerirle a esos
  * usuarios que las modifiquen. Escriba un programa que:
- * a) lea los datos y genere una lista de todas las contraseñas que estén
- * repetidas más de 10 veces (que más de 10 usuarios tengan la misma).  La lista
- * debe  estar  ordenada por cantidad de  repeticiones  (primero  las  que más
- * se  repiten).
- * b) modifique  el archivo  estableciendo  la  cadena  vacía
- * como contraseña para todos los usuarios que tengan alguna de las contraseñas
- * de la lista.
+ * a) lea los datos y genere una listaUsers de todas las contraseñas que estén
+ * repetidas más de 10 veces (que más de 10 usuarios tengan la misma).  La
+ * listaUsers debe  estar  ordenada por cantidad de  repeticiones  (primero  las
+ * que más se  repiten). b) modifique  el archivo  estableciendo  la  cadena
+ * vacía como contraseña para todos los usuarios que tengan alguna de las
+ * contraseñas de la listaUsers.
  */
 
 #include <cstring>
@@ -25,8 +24,8 @@ struct User {
 };
 
 struct Contrasena {
-  string texto; // Contraseña en sí
-  int repet;    // cant de veces repetida
+  string texto;  // Contraseña en sí
+  int repet = 0; // cant de veces repetida
 };
 
 ostream &operator<<(ofstream &o, Contrasena c) {
@@ -36,10 +35,10 @@ ostream &operator<<(ofstream &o, Contrasena c) {
 
 int main() {
   ifstream datos("datos.txt");
-  fstream archi("usuarios.bin", ios::binary | ios::in);
-  vector<User> lista;
+  // fstream archi("usuarios.bin", ios::binary | ios::in);
+  vector<User> listaUsers;
   int cod;
-  string nomb, pas = 0;
+  string nomb, pas;
 
   while (datos >> cod && datos >> nomb && datos >> pas) {
     User u;
@@ -48,25 +47,31 @@ int main() {
     strcpy(u.nombre, nomb.c_str());
     strcpy(u.pass, pas.c_str());
 
-    lista.push_back(u);
+    listaUsers.push_back(u);
   }
 
-  vector<Contrasena> listaPass;
+  vector<Contrasena> listaPassUsers;
+  Contrasena cu;
+  cu.texto = listaUsers[0].pass;
+  cu.repet += 1;
+  listaPassUsers.push_back(cu);
 
-  for (User u : lista) {
-    for (int i = 0; i < listaPass.size(); i++) {
-      if (u.pass != listaPass[i].texto) {
-        Contrasena cs;
-        cs.texto = u.pass;
-        cs.repet += 1;
-        listaPass.push_back(cs);
-      } else if (u.pass == listaPass[i].texto) {
-        listaPass[i].repet++;
+  for (int j = 1; j < listaUsers.size(); j++) {
+    for (int i = 0; i < listaPassUsers.size(); i++) {
+      if (listaUsers[j].pass != listaPassUsers[i].texto) {
+        Contrasena cu;
+        cu.texto = listaUsers[j].pass;
+        cu.repet += 1;
+        listaPassUsers.push_back(cu);
+      } else if (listaUsers[j].pass == listaPassUsers[i].texto) {
+        listaPassUsers[i].repet++;
       }
     }
 
-    for (Contrasena b : listaPass) {
-      cout << b.texto << " " << b.repet << endl;
+    cout << "size " << listaPassUsers.size() << endl;
+
+    for (Contrasena b : listaPassUsers) {
+      cout << "pass " << b.texto << " repite " << b.repet << endl;
     }
 
     return 0;
