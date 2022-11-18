@@ -21,19 +21,42 @@ private:
   A dato1, dato2;
 
 public:
-  Generica(A n) { array.resize(n); }
+  Generica() { array.resize(0); }
+  Generica(int n) { array.resize(n); }
+  void resizeCas(int n) { array.resize(n); }
   void cargarVector(A e, int i) { array[i] = e; }
-  tuple<A> dosMax() {
-    A max1 = array[0], max2;
-    for (A i : array) {
-      if (max1 < i) {
+  tuple<A, A> dosMax() {
+    A max1 = array[0], max2 = array[1];
+    for (int i = 2; i < array.size(); i++) {
+      if (max1 < array[i]) {
         max2 = max1;
-        max1 = i;
-      } else if (max2 < i)
-        max2 = i;
+        max1 = array[i];
+      } else if (max2 < array[i])
+        max2 = array[i];
     }
     return make_tuple(max1, max2);
   }
 };
 
-int main() { return 0; }
+int main() {
+  // Cambiar string por int o viceversa
+  Generica<string> clase;
+  string max1, max2, e;
+  int n;
+
+  cout << "Ingrese tamano del vector\n";
+  cin >> n;
+  clase.resizeCas(n);
+
+  for (int i = 0; i < n; i++) {
+    cout << "Ingrese elemento\n";
+    cin >> e;
+    clase.cargarVector(e, i);
+  }
+
+  tie(max1, max2) = clase.dosMax();
+
+  cout << "Los 2 mayores son: " << max1 << " y " << max2;
+
+  return 0;
+}
